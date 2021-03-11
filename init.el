@@ -256,6 +256,11 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.robot\\'" . robot-mode)))
 
+(defun edit-config-file ()
+  "Open the init file."
+  (interactive)
+  (find-file user-init-file))
+
 ;; Not sure if this will work with js-mode
 ;; (use-package js2-refactor
 ;;   :config
@@ -307,8 +312,7 @@
 
     ;; Files
     "f" '(:ignore t :which-key "files")
-    "fei" 'find-generated-config-file
-    "fed" 'find-literate-config-file
+    "fed" 'edit-config-file
     "fer" 'reload-emacs-configuration
     "ff" 'counsel-find-file
     "fg" 'counsel-git
