@@ -404,16 +404,8 @@
 
     ;; Toggle 1
     "t" '(:ignore t :which-key "toggle")
-    "tf" '(fci-mode :which-key "fill-column")
-    "ti" '(highlight-indent-guides-mode :which-key "indent-guides")
     "tn" '(display-line-numbers-mode :which-key "line-numbers")
-
-    ;; Toggle 2
-    "T" '(:ignore t :which-key "toggle")
-    "Tf" 'change-font
-    "TF" '(toggle-frame-fullscreen :which-key "fullscreen")
-    "TT" 'counsel-load-theme
-    "TW" 'global-writeroom-mode
+    "tz" 'writeroom-mode
 
     ;; Window
     "w" '(:ignore t :which-key "window")
