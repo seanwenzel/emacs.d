@@ -44,7 +44,7 @@
  inhibit-startup-message t              ; Don't show the startup message
  inhibit-startup-screen t               ; inhibit useless and old-school startup screen
  initial-scratch-message nil            ; Empty scratch buffer
- line-spacing nil                      ; I sometimes like some line spacing
+ line-spacing nil                       ; I sometimes like some line spacing
  ring-bell-function 'ignore             ; silent bell when you make a mistake
  sentence-end-double-space nil          ; End a sentence after a dot and a space
  show-trailing-whitespace t             ; Display trailing whitespaces
@@ -137,8 +137,8 @@
   (setq evil-want-keybinding nil)
   :config ;; tweak evil after loading it
 
-  ;; TODO: Use insert/emacs state for dired
-  (setq evil-default-state 'normal)
+  (setq evil-default-state 'normal) ;; Dired
+  (add-hook 'with-editor-mode-hook 'evil-insert-state) ;; Magit git commit buffer
   ;; Use regular emacs keybindings for insert-mode (except for ESC-ESC-ESC,
   ;; because vim keybindings are still vim).
   (setq evil-insert-state-map (make-sparse-keymap))
