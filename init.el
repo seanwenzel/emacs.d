@@ -127,13 +127,8 @@
   :config
   (editorconfig-mode 1))
 
-(use-package undo-tree
-  :config
-  (global-undo-tree-mode))
-
 ;; load evil
 (use-package evil
-  :after undo-tree
   ;; install the evil package if not installed
   :init ;; tweak evil's configuration before loading it
   (setq evil-search-module 'evil-search)
@@ -154,7 +149,7 @@
   (setq evil-insert-state-map (make-sparse-keymap))
   (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
 
-  (evil-set-undo-system 'undo-tree)
+  (evil-set-undo-system 'undo-redo)
 
   (evil-mode))
 
