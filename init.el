@@ -127,8 +127,13 @@
   :config
   (editorconfig-mode 1))
 
+(use-package undo-tree
+  :config
+  (global-undo-tree-mode))
+
 ;; load evil
 (use-package evil
+  :after undo-tree
   ;; install the evil package if not installed
   :init ;; tweak evil's configuration before loading it
   (setq evil-search-module 'evil-search)
@@ -143,20 +148,20 @@
   :config ;; tweak evil after loading it
 
   (setq evil-default-state 'normal)
-  (add-hook 'dired-mode-hook 'evil-insert-state)
   (add-hook 'with-editor-mode-hook 'evil-insert-state) ;; Magit git commit buffer
   ;; Use regular emacs keybindings for insert-mode (except for ESC-ESC-ESC,
   ;; because vim keybindings are still vim).
   (setq evil-insert-state-map (make-sparse-keymap))
   (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
 
+  (evil-set-undo-system 'undo-tree)
+
   (evil-mode))
 
 (use-package evil-collection
   :after evil
   :config
-  (evil-collection-init 'magit)
-  )
+  (evil-collection-init))
 
 ;; gc operator, like vim-commentary
 (use-package evil-commentary
@@ -440,7 +445,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(evil-collection editorconfig robot-mode diminish writeroom-mode avy restart-emacs add-node-modules-path exec-path-from-shell flycheck ivy-yasnippet yasnippet-snippets yasnippet evil-args evil-surround evil-commentary which-key evil doom-modeline doom-themes use-package)))
+   '(undo-tree evil-collection editorconfig robot-mode diminish writeroom-mode avy restart-emacs add-node-modules-path exec-path-from-shell flycheck ivy-yasnippet yasnippet-snippets yasnippet evil-args evil-surround evil-commentary which-key evil doom-modeline doom-themes use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
