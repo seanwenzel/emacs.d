@@ -122,6 +122,11 @@
   (doom-themes-org-config)
   (load-theme 'doom-monokai-pro t))
 
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
+
 ;; load evil
 (use-package evil
   ;; install the evil package if not installed
