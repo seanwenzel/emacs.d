@@ -1,3 +1,13 @@
+(setq gc-cons-threshold 50000000) ;; 50 MB
+(setq large-file-warning-threshold 100000000)
+
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+
+(defalias 'yes-or-no-p 'y-or-n-p)
+
 (when window-system
   (menu-bar-mode -1)
   (toggle-scroll-bar -1)
@@ -43,14 +53,30 @@
  hscroll-margin 1
  )
 
+;; Show full path of file in frame title
+(setq frame-title-format
+      '((:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name))
+                 "%b"))))
+
+(set-frame-font "Fira Code 12" nil t)
+
 ;; Delete trailing whitepsace on save
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'before-save-hook 'whitespace-cleanup)
 
 ;; Revert (update) buffers automatically when underlying files are changed externally
 (global-auto-revert-mode t)
 
 ;; Enable subword movement and editing
 (global-subword-mode t)
+
+;; Highlight current line
+(global-hl-line-mode t)
+
+;; Show line and col numbers + size in modeline
+(line-number-mode t)
+(column-number-mode t)
+(size-indication-mode t)
 
 (require 'package)
 (setq package-enable-at-startup nil)
@@ -70,6 +96,8 @@
 
 (eval-when-compile
   (require 'use-package))
+
+(use-package diminish)
 
 (use-package doom-themes
   :demand
@@ -130,7 +158,12 @@
 
 (use-package ivy-yasnippet)
 
-(use-package flycheck)
+(use-package flycheck
+  :diminish flycheck-mode
+  :config
+  (add-hook 'after-init-hook #'global-flycheck-mode)
+  )
+
 (use-package restart-emacs)
 
 (use-package exec-path-from-shell
@@ -144,6 +177,7 @@
   (add-hook 'js2-jsx-mode #'add-node-modules-path))
 
 (use-package company
+  :diminish company-mode
   :config
   ;; Set delay in showing suggestions (0.5 by default)
   (setq company-idle-delay 0.5)
@@ -151,7 +185,7 @@
   ;; Start showing suggestions after just 1 character (3 by default)
   (setq company-minimum-prefix-length 1)
 
-  (global-company-mode))
+  (add-hook 'after-init-hook #'global-company-mode))
 
 (use-package avy
   :commands (avy-goto-word-1))
@@ -185,6 +219,7 @@
   (global-diff-hl-mode))
 
 (use-package which-key
+  :diminish which-key-mode
   :config
   (which-key-mode))
 
@@ -347,7 +382,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(writeroom-mode avy restart-emacs add-node-modules-path exec-path-from-shell flycheck ivy-yasnippet yasnippet-snippets yasnippet evil-args evil-surround evil-commentary which-key evil doom-modeline doom-themes use-package)))
+   '(diminish writeroom-mode avy restart-emacs add-node-modules-path exec-path-from-shell flycheck ivy-yasnippet yasnippet-snippets yasnippet evil-args evil-surround evil-commentary which-key evil doom-modeline doom-themes use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
