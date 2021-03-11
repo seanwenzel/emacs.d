@@ -92,6 +92,7 @@
   (setq evil-want-keybinding nil)
   :config ;; tweak evil after loading it
 
+  (setq evil-default-state 'emacs)
   ;; Use regular emacs keybindings for insert-mode (except for ESC-ESC-ESC,
   ;; because vim keybindings are still vim).
   (setq evil-insert-state-map (make-sparse-keymap))
