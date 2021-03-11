@@ -329,13 +329,12 @@
     "fg" 'counsel-git
     "fs" 'save-buffer
     "fr" 'counsel-recentf
-    "fR" 'ranger
     "ft" 'treemacs
 
     ;; Git
     "g" '(:ignore t :which-key "git")
     "gs" 'magit-status
-    "gb" 'magit-blame
+    "gB" 'magit-blame
 
     ;; Help
     "h" '(:ignore t :which-key "help")
