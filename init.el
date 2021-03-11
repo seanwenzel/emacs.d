@@ -256,6 +256,11 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.robot\\'" . robot-mode)))
 
+;; Not sure if this will work with js-mode
+;; (use-package js2-refactor
+;;   :config
+;;   (add-hook 'js2-mode-hook #'js2-refactor-mode))
+
 (use-package general
   :config
   (general-evil-setup)
