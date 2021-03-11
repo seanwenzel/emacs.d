@@ -44,6 +44,7 @@
  inhibit-startup-message t              ; Don't show the startup message
  inhibit-startup-screen t               ; inhibit useless and old-school startup screen
  initial-scratch-message nil            ; Empty scratch buffer
+ line-spacing nil                      ; I sometimes like some line spacing
  ring-bell-function 'ignore             ; silent bell when you make a mistake
  sentence-end-double-space nil          ; End a sentence after a dot and a space
  show-trailing-whitespace t             ; Display trailing whitespaces
@@ -75,7 +76,7 @@
                    (abbreviate-file-name (buffer-file-name))
                  "%b"))))
 
-(set-frame-font "Fira Code 12" nil t)
+;; (set-frame-font "Fira Code 12" nil t)
 
 ;; Delete trailing whitepsace on save
 (add-hook 'before-save-hook 'whitespace-cleanup)
@@ -136,7 +137,8 @@
   (setq evil-want-keybinding nil)
   :config ;; tweak evil after loading it
 
-  (setq evil-default-state 'insert)
+  ;; TODO: Use insert/emacs state for dired
+  (setq evil-default-state 'normal)
   ;; Use regular emacs keybindings for insert-mode (except for ESC-ESC-ESC,
   ;; because vim keybindings are still vim).
   (setq evil-insert-state-map (make-sparse-keymap))
@@ -195,8 +197,14 @@
 (use-package company
   :diminish company-mode
   :config
+  (define-key company-active-map (kbd "M-n") nil)
+  (define-key company-active-map (kbd "M-p") nil)
+  (define-key company-active-map (kbd "C-n") #'company-select-next)
+  (define-key company-active-map (kbd "C-p") #'company-select-previous)
+  (define-key company-active-map (kbd "C-j") #'company-select-next)
+  (define-key company-active-map (kbd "C-k") #'company-select-previous)
   ;; Set delay in showing suggestions (0.5 by default)
-  (setq company-idle-delay 0.5)
+  (setq company-idle-delay 0.35)
 
   ;; Start showing suggestions after just 1 character (3 by default)
   (setq company-minimum-prefix-length 1)
