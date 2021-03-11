@@ -261,6 +261,17 @@
   (interactive)
   (find-file user-init-file))
 
+;; Helper function to center buffer after jump
+(defun recenter-no-redraw (&optional arg)
+  "Like `recenter', but no redrawing."
+  (interactive "P")
+  (let ((recenter-redisplay nil))
+    (recenter arg)))
+
+;; Center buffer after imenu jumps
+(advice-add 'imenu :after (lambda (&rest args)
+                                    (recenter-no-redraw)))
+
 ;; Not sure if this will work with js-mode
 ;; (use-package js2-refactor
 ;;   :config
