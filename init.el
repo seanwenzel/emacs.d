@@ -137,7 +137,8 @@
   (setq evil-want-keybinding nil)
   :config ;; tweak evil after loading it
 
-  (setq evil-default-state 'normal) ;; Dired
+  (setq evil-default-state 'normal)
+  (add-hook 'dired-mode-hook 'evil-insert-state)
   (add-hook 'with-editor-mode-hook 'evil-insert-state) ;; Magit git commit buffer
   ;; Use regular emacs keybindings for insert-mode (except for ESC-ESC-ESC,
   ;; because vim keybindings are still vim).
@@ -363,10 +364,9 @@
 
     ;; Projectile
     "p" '(:ignore t :which-key "project")
-    "pa" 'projectile-add-known-project
-    "pt" 'treemacs-projectile
-    "pp" 'projectile-switch-project
-    "pf" 'projectile-find-file
+    "pp" 'project-switch-project
+    "pf" 'project-find-file
+    "pd" 'project-dired
 
     ;; Profiler
     "pb" 'profiler-start ;; Profile Begin
