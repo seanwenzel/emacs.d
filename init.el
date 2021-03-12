@@ -127,6 +127,8 @@
   :config
   (editorconfig-mode 1))
 
+(use-package leetcode)
+
 ;; load evil
 (use-package evil
   ;; install the evil package if not installed
@@ -190,8 +192,8 @@
 
 (use-package flycheck
   :diminish flycheck-mode
-  :config
-  (add-hook 'after-init-hook #'global-flycheck-mode)
+  ;; :config
+  ;; (add-hook 'after-init-hook #'global-flycheck-mode)
   )
 
 (use-package restart-emacs)
@@ -392,10 +394,6 @@
     ;; Search
     "s" '(:ignore t :which-key "search")
     "sl" 'swiper
-    "sdg" 'deadgrep
-    "sap" 'counsel-projectile-ag
-    "srp" 'counsel-projectile-rg
-    ;; "srg" 'projectile-ripgrep
 
     ;; Toggle 1
     "t" '(:ignore t :which-key "toggle")
@@ -425,14 +423,13 @@
     "sN" 'widen
     )
   )
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(undo-tree evil-collection editorconfig robot-mode diminish writeroom-mode avy restart-emacs add-node-modules-path exec-path-from-shell flycheck ivy-yasnippet yasnippet-snippets yasnippet evil-args evil-surround evil-commentary which-key evil doom-modeline doom-themes use-package)))
+   '(leetcode yasnippet-snippets writeroom-mode which-key use-package robot-mode restart-emacs magit ivy-yasnippet general flycheck exec-path-from-shell evil-surround evil-commentary evil-collection evil-args editorconfig doom-themes doom-modeline diminish diff-hl counsel company avy add-node-modules-path)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
