@@ -234,7 +234,6 @@
 (use-package avy
   :commands (avy-goto-word-1))
 
-;; TODO: Install counsel-fzf as an option for large projects
 (use-package ivy
   :diminish
   :init
@@ -372,7 +371,6 @@
     "fg" 'counsel-git
     "fs" 'save-buffer
     "fr" 'counsel-recentf
-    "ft" 'treemacs
 
     ;; Git
     "g" '(:ignore t :which-key "git")
