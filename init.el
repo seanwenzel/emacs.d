@@ -51,8 +51,6 @@
                    (abbreviate-file-name (buffer-file-name))
                  "%b"))))
 
-;; (set-frame-font "Fira Code 12" nil t)
-
 ;; Delete trailing whitepsace on save
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
@@ -117,15 +115,15 @@
 (use-package evil
   ;; install the evil package if not installed
   :init ;; tweak evil's configuration before loading it
-  (setq evil-search-module 'evil-search)
+  ;; (setq evil-search-module 'evil-search)
   (setq evil-ex-search-case 'insensitive)
-  (setq evil-ex-complete-emacs-commands nil)
+  ;; (setq evil-ex-complete-emacs-commands nil)
   (setq evil-vsplit-window-right t)
   (setq evil-split-window-below t)
-  (setq evil-shift-round nil)
+  ;; (setq evil-shift-round nil)
   (setq evil-want-C-u-scroll t)
-  (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
-  (setq evil-want-keybinding nil)
+  ;; (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+  ;; (setq evil-want-keybinding nil)
   :config ;; tweak evil after loading it
 
   (setq evil-default-state 'insert)
@@ -135,6 +133,7 @@
 
   ;; Use regular emacs keybindings for insert-mode (except for ESC-ESC-ESC,
   ;; because vim keybindings are still vim).
+
   (setq evil-insert-state-map (make-sparse-keymap))
   (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
 
