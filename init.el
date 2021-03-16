@@ -17,7 +17,7 @@
 (setq-default
  ;; General Defaults
  confirm-kill-emacs nil                 ; Don't have to confirm to kill emacs
- confirm-kill-processes t               ; Do have to confirm to kill running processes
+ confirm-kill-processes nil             ; Don't have to confirm to kill running processes
  cursor-in-non-selected-windows nil     ; Hide the cursor in inactive windows
  delete-by-moving-to-trash nil          ; Delete files without moving to trash
  fill-column 80                         ; Set width for automatic line breaks
@@ -36,19 +36,6 @@
  auto-save-default nil                  ; stop creating #autosave# files
  create-lockfiles nil                   ; stop creating .# files
  make-backup-files nil                  ; stop creating backup~ files
-
- ;; Smooth Scrolling Defaults (from M-Emacs)
- scroll-step 1
- scroll-margin 1                        ; Add a line margin when scrolling vertically
- scroll-conservatively 101
- scroll-up-aggressively 0.01
- scroll-down-aggressively 0.01
- auto-window-vscroll nil
- fast-but-imprecise-scrolling nil
- mouse-wheel-scroll-amount '(1 ((shift) . 1))
- mouse-wheel-progressive-speed nil
- hscroll-step 1
- hscroll-margin 1
  )
 
 ;; Set default font
@@ -113,6 +100,11 @@
 (use-package editorconfig
   :config
   (editorconfig-mode 1))
+
+(use-package smooth-scrolling
+  :config
+  (smooth-scrolling-mode 1)
+  )
 
 (use-package leetcode
   :config
@@ -419,3 +411,16 @@
     "sN" 'widen
     )
   )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(smooth-scrolling yasnippet-snippets writeroom-mode which-key use-package robot-mode restart-emacs magit leetcode ivy-yasnippet general flycheck exec-path-from-shell evil-surround evil-commentary evil-collection evil-args editorconfig doom-themes doom-modeline diminish diff-hl counsel company avy add-node-modules-path)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
