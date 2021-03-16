@@ -233,6 +233,7 @@
   :init
   (use-package counsel :diminish :config (counsel-mode 1))
   (use-package swiper :defer t)
+  (use-package orderless)
   (ivy-mode 1)
   :custom
   (ivy-use-virtual-buffers t)
@@ -242,6 +243,7 @@
   (ivy-count-format "【%d/%d】")
   (ivy-wrap t)
   :config
+  (setq ivy-re-builders-alist '((t . orderless-ivy-re-builder)))
   (setq ivy-initial-inputs-alist nil)
   (defun counsel-goto-local-home ()
     "Go to the $HOME of the local machine."
@@ -438,7 +440,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(forge json-mode markdown-mode js2-refactor rainbow-delimiters objed smooth-scrolling yasnippet-snippets writeroom-mode which-key use-package robot-mode restart-emacs magit leetcode ivy-yasnippet general flycheck exec-path-from-shell evil-surround evil-commentary evil-collection evil-args editorconfig doom-themes doom-modeline diminish diff-hl counsel company avy add-node-modules-path)))
+   '(orderless forge json-mode markdown-mode js2-refactor rainbow-delimiters objed smooth-scrolling yasnippet-snippets writeroom-mode which-key use-package robot-mode restart-emacs magit leetcode ivy-yasnippet general flycheck exec-path-from-shell evil-surround evil-commentary evil-collection evil-args editorconfig doom-themes doom-modeline diminish diff-hl counsel company avy add-node-modules-path)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
