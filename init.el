@@ -127,7 +127,9 @@
   :config ;; tweak evil after loading it
 
   (setq evil-default-state 'insert)
+
   (evil-set-initial-state 'prog-mode 'normal)
+  (evil-set-initial-state 'fundamental-mode 'normal)
 
   (add-hook 'with-editor-mode-hook 'evil-insert-state) ;; Magit git commit buffer
 
