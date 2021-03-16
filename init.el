@@ -228,6 +228,7 @@
 (use-package avy
   :commands (avy-goto-word-1))
 
+;; TODO: Install counsel-fzf as an option for large projects
 (use-package ivy
   :diminish
   :init
@@ -300,6 +301,18 @@
 ;; Center buffer after imenu jumps
 (advice-add 'imenu :after (lambda (&rest args)
                                     (recenter-no-redraw)))
+
+;; toggle profiler (taken from Doom)
+(defvar doom--profiler nil)
+;;;###autoload
+(defun doom/toggle-profiler ()
+  "Toggle the Emacs profiler. Run it again to see the profiling report."
+  (interactive)
+  (if (not doom--profiler)
+      (profiler-start 'cpu+mem)
+    (profiler-report)
+    (profiler-stop))
+  (setq doom--profiler (not doom--profiler)))
 
 (use-package general
   :config
@@ -392,11 +405,6 @@
     "pf" 'project-find-file
     "pd" 'project-dired
 
-    ;; Profiler
-    "pb" 'profiler-start ;; Profile Begin
-    "pr" 'profiler-report ;; Profile Report
-    "pe" 'profiler-stop ;; Profile End
-
     ;; Quit
     "q" '(:ignore t :which-key "quit")
     "qq" '(save-buffers-kill-terminal :which-key "quit")
@@ -410,6 +418,7 @@
     "t" '(:ignore t :which-key "toggle")
     "tn" '(display-line-numbers-mode :which-key "line-numbers")
     "tz" 'writeroom-mode
+    "tp" 'doom/toggle-profiler
 
     ;; Window
     "w" '(:ignore t :which-key "window")
