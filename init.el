@@ -208,6 +208,12 @@
 ;;   (add-hook 'js2-mode #'add-node-modules-path)
 ;;   (add-hook 'js2-jsx-mode #'add-node-modules-path))
 
+;; (use-package projectile
+;;   :config
+;;   (projectile-mode +1)
+;; (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+;; (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+
 (use-package company
   :diminish company-mode
   :config
@@ -449,7 +455,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(orderless forge json-mode markdown-mode js2-refactor rainbow-delimiters objed smooth-scrolling yasnippet-snippets writeroom-mode which-key use-package robot-mode restart-emacs magit leetcode ivy-yasnippet general flycheck exec-path-from-shell evil-surround evil-commentary evil-collection evil-args editorconfig doom-themes doom-modeline diminish diff-hl counsel company avy add-node-modules-path)))
+   '(projectile orderless forge json-mode markdown-mode js2-refactor rainbow-delimiters objed smooth-scrolling yasnippet-snippets writeroom-mode which-key use-package robot-mode restart-emacs magit leetcode ivy-yasnippet general flycheck exec-path-from-shell evil-surround evil-commentary evil-collection evil-args editorconfig doom-themes doom-modeline diminish diff-hl counsel company avy add-node-modules-path)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
