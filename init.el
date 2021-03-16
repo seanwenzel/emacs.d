@@ -102,6 +102,12 @@
   (doom-themes-org-config)
   (load-theme 'doom-monokai-pro t))
 
+(use-package all-the-icons)
+(use-package doom-modeline
+  :after all-the-icons
+  :config
+  (doom-modeline-mode))
+
 (use-package editorconfig
   :config
   (editorconfig-mode 1))
@@ -233,7 +239,7 @@
   (define-key company-active-map (kbd "C-j") #'company-select-next)
   (define-key company-active-map (kbd "C-k") #'company-select-previous)
   ;; Set delay in showing suggestions (0.5 by default)
-  (setq company-idle-delay 0.35)
+  (setq company-idle-delay 0.5)
 
   ;; Start showing suggestions after just 1 character (3 by default)
   (setq company-minimum-prefix-length 1)
