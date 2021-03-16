@@ -260,8 +260,8 @@
   :bind ("C-x g" . magit-status))
 
 ;; Forge install fails for some reason
-; (use-package forge
-;   :after magit)
+(use-package forge
+  :after magit)
 
 (use-package diff-hl
   :config
