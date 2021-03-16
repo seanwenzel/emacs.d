@@ -63,6 +63,9 @@
 ;; Highlight current line
 (global-hl-line-mode t)
 
+;; Always show matching parens
+(show-paren-mode t)
+
 ;; Show line and col numbers + size in modeline
 (line-number-mode t)
 (column-number-mode t)
@@ -72,7 +75,9 @@
 (setq package-enable-at-startup nil)
 (setq package-archives '(("org"   . "http://orgmode.org/elpa/")
                          ("gnu"   . "http://elpa.gnu.org/packages/")
-                         ("melpa" . "http://melpa.org/packages/")))
+                         ("melpa" . "http://melpa.org/packages/")
+                         ("melpa-stable" . "https://stable.melpa.org/packages/"))
+                         )
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -129,6 +134,7 @@
   (setq evil-default-state 'insert)
 
   (evil-set-initial-state 'prog-mode 'normal)
+  (evil-set-initial-state 'text-mode 'normal)
   (evil-set-initial-state 'fundamental-mode 'normal)
 
   (add-hook 'with-editor-mode-hook 'evil-insert-state) ;; Magit git commit buffer
@@ -264,6 +270,13 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.robot\\'" . robot-mode)))
 
+(use-package markdown-mode
+  :ensure t
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
+
 (defun edit-config-file ()
   "Open the init file."
   (interactive)
@@ -279,11 +292,6 @@
 ;; Center buffer after imenu jumps
 (advice-add 'imenu :after (lambda (&rest args)
                                     (recenter-no-redraw)))
-
-;; Not sure if this will work with js-mode
-;; (use-package js2-refactor
-;;   :config
-;;   (add-hook 'js2-mode-hook #'js2-refactor-mode))
 
 (use-package general
   :config
@@ -343,6 +351,7 @@
     "g" '(:ignore t :which-key "git")
     "gs" 'magit-status
     "gB" 'magit-blame
+    "gc" 'magit-clone
 
     ;; Help
     "h" '(:ignore t :which-key "help")
@@ -423,7 +432,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(rainbow-delimiters objed smooth-scrolling yasnippet-snippets writeroom-mode which-key use-package robot-mode restart-emacs magit leetcode ivy-yasnippet general flycheck exec-path-from-shell evil-surround evil-commentary evil-collection evil-args editorconfig doom-themes doom-modeline diminish diff-hl counsel company avy add-node-modules-path)))
+   '(markdown-mode js2-refactor rainbow-delimiters objed smooth-scrolling yasnippet-snippets writeroom-mode which-key use-package robot-mode restart-emacs magit leetcode ivy-yasnippet general flycheck exec-path-from-shell evil-surround evil-commentary evil-collection evil-args editorconfig doom-themes doom-modeline diminish diff-hl counsel company avy add-node-modules-path)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
