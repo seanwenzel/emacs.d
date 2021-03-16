@@ -123,11 +123,15 @@
   (load-theme 'doom-monokai-pro t))
 
 (use-package editorconfig
-  :ensure t
   :config
   (editorconfig-mode 1))
 
-(use-package leetcode)
+(use-package leetcode
+  :config
+  (setq leetcode-prefer-language "python3")
+  (setq leetcode-save-solutions t)
+  (setq leetcode-directory "~/leetcode")
+  )
 
 ;; load evil
 (use-package evil
@@ -155,10 +159,10 @@
 
   (evil-mode))
 
-(use-package evil-collection
-  :after evil
-  :config
-  (evil-collection-init))
+;; (use-package evil-collection
+;;   :after evil
+;;   :config
+;;   (evil-collection-init))
 
 ;; gc operator, like vim-commentary
 (use-package evil-commentary
@@ -201,12 +205,13 @@
 (use-package exec-path-from-shell
   :config
   (when (memq window-system '(mac ns x))
-    (exec-path-from-shell-initialize)))
+    (exec-path-from-shell-initialize)
+    ))
 
-(use-package add-node-modules-path
-  :config
-  (add-hook 'js2-mode #'add-node-modules-path)
-  (add-hook 'js2-jsx-mode #'add-node-modules-path))
+;; (use-package add-node-modules-path
+;;   :config
+;;   (add-hook 'js2-mode #'add-node-modules-path)
+;;   (add-hook 'js2-jsx-mode #'add-node-modules-path))
 
 (use-package company
   :diminish company-mode
@@ -423,16 +428,3 @@
     "sN" 'widen
     )
   )
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(leetcode yasnippet-snippets writeroom-mode which-key use-package robot-mode restart-emacs magit ivy-yasnippet general flycheck exec-path-from-shell evil-surround evil-commentary evil-collection evil-args editorconfig doom-themes doom-modeline diminish diff-hl counsel company avy add-node-modules-path)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
