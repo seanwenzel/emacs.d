@@ -184,7 +184,10 @@
   :config
   (setq evil-snipe-scope 'buffer)
   (evil-snipe-mode +1)
-  (evil-snipe-override-mode +1)
+
+  ;; This interferes with custom semi-colon mapping in general
+  ;; Disable for now, revisit later
+  ;; (evil-snipe-override-mode +1)
 )
 
 ;; more text objectss
@@ -317,7 +320,8 @@
   :after python
   )
 
-(use-package py-yapf)
+(use-package py-yapf
+  :after python)
 
 (use-package docker
   :ensure t
