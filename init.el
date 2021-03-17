@@ -71,6 +71,13 @@
 (column-number-mode t)
 (size-indication-mode t)
 
+;; Interpret ansi escape sequences in log files
+(require 'ansi-color)
+(defun display-ansi-colors ()
+  (interactive)
+  (ansi-color-apply-on-region (point-min) (point-max)))
+(add-to-list 'auto-mode-alist '("\\.log\\'" . display-ansi-colors))
+
 (require 'package)
 ;; (setq package-enable-at-startup nil)
 (setq package-archives '(("org"   . "http://orgmode.org/elpa/")
