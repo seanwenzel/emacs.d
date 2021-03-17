@@ -313,9 +313,21 @@
 
 (use-package json-mode)
 
+(use-package python-black
+  :after python
+  )
+
+(use-package py-yapf)
+
 (use-package docker
   :ensure t
   :bind ("C-c d" . docker))
+
+;; todo dockerfile-mode cmake-mode
+(use-package dockerfile-mode
+  :config
+    (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+  )
 
 (defun edit-config-file ()
   "Open the init file."
@@ -479,7 +491,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(evil-snipe vlf docker projectile orderless forge json-mode markdown-mode js2-refactor rainbow-delimiters objed smooth-scrolling yasnippet-snippets writeroom-mode which-key use-package robot-mode restart-emacs magit leetcode ivy-yasnippet general flycheck exec-path-from-shell evil-surround evil-commentary evil-collection evil-args editorconfig doom-themes doom-modeline diminish diff-hl counsel company avy add-node-modules-path)))
+   '(dockerfile-mode dockerfile py-yapf python-black evil-snipe vlf docker projectile orderless forge json-mode markdown-mode js2-refactor rainbow-delimiters objed smooth-scrolling yasnippet-snippets writeroom-mode which-key use-package robot-mode restart-emacs magit leetcode ivy-yasnippet general flycheck exec-path-from-shell evil-surround evil-commentary evil-collection evil-args editorconfig doom-themes doom-modeline diminish diff-hl counsel company avy add-node-modules-path)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
