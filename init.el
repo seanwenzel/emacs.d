@@ -66,6 +66,9 @@
 ;; Always show matching parens
 (show-paren-mode t)
 
+(recentf-mode 1)
+(setq recentf-max-saved-items 1000)
+
 ;; Show line and col numbers + size in modeline
 (line-number-mode t)
 (column-number-mode t)
@@ -233,11 +236,11 @@
 ;;   (add-hook 'js2-mode #'add-node-modules-path)
 ;;   (add-hook 'js2-jsx-mode #'add-node-modules-path))
 
-;; (use-package projectile
-;;   :config
-;;   (projectile-mode +1)
-;; (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-;; (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+(use-package projectile
+  :config
+  (projectile-mode +1)
+(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 (use-package company
   :diminish company-mode
@@ -448,9 +451,9 @@
 
     ;; Projectile
     "p" '(:ignore t :which-key "project")
-    "pp" 'project-switch-project
-    "pf" 'project-find-file
-    "pd" 'project-dired
+    "pp" 'projectile-switch-project
+    "pf" 'projectile-find-file
+    "pd" 'projectile-dired
 
     ;; Quit
     "q" '(:ignore t :which-key "quit")
