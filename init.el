@@ -540,6 +540,7 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     "p" 'projectile-switch-project
     "f" 'projectile-find-file
     "d" 'projectile-dired
+    "t" 'projectile-test-project
     )
 
   (+general-global-menu! "toggle" "t"
