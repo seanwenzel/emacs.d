@@ -87,7 +87,7 @@
                          ("gnu"   . "http://elpa.gnu.org/packages/")
                          ("melpa" . "http://melpa.org/packages/")
                          ("melpa-stable" . "https://stable.melpa.org/packages/"))
-                         )
+      )
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -191,7 +191,7 @@
   ;; This interferes with custom semi-colon mapping in general
   ;; Disable for now, revisit later
   ;; (evil-snipe-override-mode +1)
-)
+  )
 
 ;; more text objectss
 (use-package evil-args
@@ -239,8 +239,8 @@
 (use-package projectile
   :config
   (projectile-mode +1)
-(define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 (use-package company
   :diminish company-mode
@@ -332,7 +332,7 @@
 
 (use-package dockerfile-mode
   :config
-    (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+  (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
   )
 
 (use-package cmake-mode)
@@ -351,7 +351,7 @@
 
 ;; Center buffer after imenu jumps
 (advice-add 'imenu :after (lambda (&rest args)
-                                    (recenter-no-redraw)))
+                            (recenter-no-redraw)))
 
 ;; toggle profiler (taken from Doom)
 (defvar doom--profiler nil)
@@ -400,23 +400,23 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
   ;;   :prefix my-local-leader)
 
   (general-create-definer global-definer
-  :keymaps 'override
-  :states  '(insert emacs normal hybrid motion visual operator)
-  :prefix  "SPC"
-  :non-normal-prefix "S-SPC")
+    :keymaps 'override
+    :states  '(insert emacs normal hybrid motion visual operator)
+    :prefix  "SPC"
+    :non-normal-prefix "S-SPC")
 
   (+general-global-menu! "buffer" "b"
-                         "b"  'counsel-switch-buffer
-                         "d"  'kill-current-buffer
-                         "o" '((lambda () (interactive) (switch-to-buffer nil))
-                               :which-key "other-buffer")
-                         "p"  'previous-buffer
-                         "r"  'rename-buffer
-                         "M" '((lambda () (interactive) (switch-to-buffer "*Messages*"))
-                               :which-key "messages-buffer")
-                         "n"  'next-buffer
-                         "s" '((lambda () (interactive) (switch-to-buffer "*scratch*"))
-                               :which-key "scratch-buffer"))
+    "b"  'counsel-switch-buffer
+    "d"  'kill-current-buffer
+    "o" '((lambda () (interactive) (switch-to-buffer nil))
+          :which-key "other-buffer")
+    "p"  'previous-buffer
+    "r"  'rename-buffer
+    "M" '((lambda () (interactive) (switch-to-buffer "*Messages*"))
+          :which-key "messages-buffer")
+    "n"  'next-buffer
+    "s" '((lambda () (interactive) (switch-to-buffer "*scratch*"))
+          :which-key "scratch-buffer"))
 
   (+general-global-menu! "files" "f"
     "ed" 'edit-config-file
@@ -426,6 +426,29 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     "s" 'save-buffer
     "r" 'counsel-recentf
     )
+
+  (+general-global-menu! "git" "g"
+    "s" 'magit-status
+    "B" 'magit-blame
+    "c" 'magit-clone
+    )
+
+  (+general-global-menu! "help" "h"
+    "f" 'describe-function
+    "g" 'general-describe-keybindings
+    "k" 'describe-key
+    "p" 'describe-package
+    "v" 'describe-variable
+    "m" 'describe-mode
+    )
+
+  (+general-global-menu! "jump" "j"
+    "i" 'counsel-imenu
+    "l" 'evil-avy-goto-line
+    "w" 'evil-avy-goto-word-1
+    "j" 'evil-avy-goto-char-timer
+    )
+
 
   (+general-global-menu! "window" "w"
     "l" 'evil-window-right
@@ -439,6 +462,18 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     "q" 'evil-quit
     "d" 'evil-quit
     "w" 'ace-window)
+
+  (+general-global-menu! "project" "p"
+    "p" 'projectile-switch-project
+    "f" 'projectile-find-file
+    "d" 'projectile-dired
+    )
+
+  (+general-global-menu! "toggle" "t"
+    "n" '(display-line-numbers-mode :which-key "line-numbers")
+    "z" 'writeroom-mode
+    "p" 'doom/toggle-profiler
+    )
 
 
   ;; Global Keybindings
@@ -456,42 +491,14 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     "e" '(:ignore t :which-key "errors")
     "el" 'flycheck-list-errors
 
-    ;; Git
-    "g" '(:ignore t :which-key "git")
-    "gs" 'magit-status
-    "gB" 'magit-blame
-    "gc" 'magit-clone
-
-    ;; Help
-    "h" '(:ignore t :which-key "help")
-    "hf" 'describe-function
-    "hg" 'general-describe-keybindings
-    "hk" 'describe-key
-    "hp" 'describe-package
-    "hv" 'describe-variable
-    "hm" 'describe-mode
-
     ;; Insert
     "i" '(:ignore t :which-key "insert")
     "is" 'ivy-yasnippet
-
-    ;; Jump
-    "j" '(:ignore t :which-key "jump")
-    "ji" 'counsel-imenu
-    "jl" 'evil-avy-goto-line
-    "jw" 'evil-avy-goto-word-1
-    "jj" 'evil-avy-goto-char-timer
 
     ;; Open
     "o" '(:ignore o :which-key "open")
     "od" 'docker
     "ol" 'leetcode
-
-    ;; Projectile
-    "p" '(:ignore t :which-key "project")
-    "pp" 'projectile-switch-project
-    "pf" 'projectile-find-file
-    "pd" 'projectile-dired
 
     ;; Quit
     "q" '(:ignore t :which-key "quit")
@@ -501,12 +508,6 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     ;; Search
     "s" '(:ignore t :which-key "search")
     "sl" 'swiper
-
-    ;; Toggle 1
-    "t" '(:ignore t :which-key "toggle")
-    "tn" '(display-line-numbers-mode :which-key "line-numbers")
-    "tz" 'writeroom-mode
-    "tp" 'doom/toggle-profiler
     )
   )
 (custom-set-variables
