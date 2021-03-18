@@ -255,10 +255,9 @@
     (exec-path-from-shell-initialize)
     ))
 
-;; (use-package add-node-modules-path
-;;   :config
-;;   (add-hook 'js2-mode #'add-node-modules-path)
-;;   (add-hook 'js2-jsx-mode #'add-node-modules-path))
+(use-package add-node-modules-path
+  :config
+  (add-hook 'js-mode-hook #'add-node-modules-path))
 
 (use-package projectile
   :ensure t
