@@ -99,8 +99,9 @@
   (setq use-package-expand-minimally t)      ; Make expanded code as minimal as possible
   (setq use-package-enable-imenu-support t)) ; Allow imenu to see use-package declarations
 
-(eval-when-compile
-  (require 'use-package))
+(require 'use-package)
+
+
 
 (use-package diminish)
 
@@ -306,6 +307,25 @@
   (setq writeroom-width 100)
   )
 
+(use-package elisp-mode
+  ;;this is a built in package, so we don't want to try and install it
+  :ensure nil
+  :general
+  (global-leader
+    ;;specify the major modes these should apply to:
+    :major-modes
+    '(emacs-lisp-mode lisp-interaction-mode t)
+    ;;and the keymaps:
+    :keymaps
+    '(emacs-lisp-mode-map lisp-interaction-mode-map)
+    "e" '(:ignore t :which-key "eval")
+    "eb" 'eval-buffer
+    "ed" 'eval-defun
+    "ee" 'eval-expression
+    "ep" 'pp-eval-last-sexp
+    "es" 'eval-last-sexp
+    "i" 'elisp-index-search))
+
 (use-package robot-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.robot\\'" . robot-mode)))
@@ -365,8 +385,6 @@
     (profiler-stop))
   (setq doom--profiler (not doom--profiler)))
 
-
-
 (use-package general
   :config
   (general-evil-setup)
@@ -404,6 +422,13 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     :states  '(insert emacs normal hybrid motion visual operator)
     :prefix  "SPC"
     :non-normal-prefix "S-SPC")
+
+  ;; For per-major mode bindings
+  (general-create-definer global-leader
+  :keymaps 'override
+  :states '(emacs normal hybrid motion visual operator)
+  :prefix "SPC m"
+  "" '(:ignore t :which-key (lambda (arg) `(,(cadr (split-string (car arg) " ")) . ,(replace-regexp-in-string "-mode$" "" (symbol-name major-mode))))))
 
   (+general-global-menu! "buffer" "b"
     "b"  'counsel-switch-buffer
@@ -510,6 +535,9 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     "sl" 'swiper
     )
   )
+
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
