@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: git_message
+# key: git
+# --
+
+# This is a git commit message template
