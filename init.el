@@ -365,43 +365,66 @@
     (profiler-stop))
   (setq doom--profiler (not doom--profiler)))
 
+
+
 (use-package general
   :config
   (general-evil-setup)
+
+  ;; from https://gist.github.com/progfolio/1c96a67fcec7584b31507ef664de36cc
+  (defmacro +general-global-menu! (name infix-key &rest body)
+    "Create a definer named +general-global-NAME wrapping global-definer.
+Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY."
+    (declare (indent 2))
+    `(progn
+       (general-create-definer ,(intern (concat "+general-global-" name))
+         :wrapping global-definer
+         :prefix-map (quote ,(intern (concat "+general-global-" name "-map")))
+         :infix ,infix-key
+         :wk-full-keys nil
+         "" '(:ignore t :which-key ,name))
+       (,(intern (concat "+general-global-" name))
+        ,@body)))
 
   ;; swap ; and :
   (general-swap-key nil 'motion
     ";" ":")
 
-  (defconst my-leader "SPC")
-  (defconst my-local-leader ",")
+  ;; (defconst my-leader "SPC")
+  ;; (defconst my-local-leader ",")
 
-  (general-create-definer my-leader-def
-    :prefix my-leader)
+  ;; (general-create-definer my-leader-def
+  ;;   :prefix my-leader)
 
-  (general-create-definer my-local-leader-def
-    :prefix my-local-leader)
+  ;; (general-create-definer my-local-leader-def
+  ;;   :prefix my-local-leader)
+
+  (general-create-definer global-definer
+  :keymaps 'override
+  :states  '(insert emacs normal hybrid motion visual operator)
+  :prefix  "SPC"
+  :non-normal-prefix "S-SPC")
+
+  (+general-global-menu! "buffer" "b"
+                         "b"  'counsel-switch-buffer
+                         "d"  'kill-current-buffer
+                         "o" '((lambda () (interactive) (switch-to-buffer nil))
+                               :which-key "other-buffer")
+                         "p"  'previous-buffer
+                         "r"  'rename-buffer
+                         "M" '((lambda () (interactive) (switch-to-buffer "*Messages*"))
+                               :which-key "messages-buffer")
+                         "n"  'next-buffer
+                         "s" '((lambda () (interactive) (switch-to-buffer "*scratch*"))
+                               :which-key "scratch-buffer"))
 
   ;; Global Keybindings
-  (my-leader-def
-    :states '(normal visual motion)
-
-    ;; This prevents leader key from ever being overriden (e.g. an evil
-    ;; package may bind "SPC")
-    :keymaps 'override
-
+  (global-definer
     ;; simple command
     "/"   'counsel-ag
     "'"   'vterm
     "="   'format-all-buffer
     "SPC" 'counsel-M-x
-
-    ;; Buffers
-    "b" '(:ignore t :which-key "buffers")
-    "bb" 'counsel-switch-buffer
-    "bp" 'evil-prev-buffer
-    "bn" 'evil-next-buffer
-    "bd" 'evil-delete-buffer
 
     ;; Documentation
     "dd" 'dash-at-point
