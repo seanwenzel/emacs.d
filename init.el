@@ -418,6 +418,20 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
                          "s" '((lambda () (interactive) (switch-to-buffer "*scratch*"))
                                :which-key "scratch-buffer"))
 
+  (+general-global-menu! "window" "w"
+    "l" 'evil-window-right
+    "k" 'evil-window-up
+    "j" 'evil-window-down
+    "h" 'evil-window-left
+    "o" 'delete-other-windows
+    "m" 'delete-other-windows
+    "v" 'evil-window-vsplit
+    "s" 'evil-window-split
+    "q" 'evil-quit
+    "d" 'evil-quit
+    "w" 'ace-window)
+
+
   ;; Global Keybindings
   (global-definer
     ;; simple command
@@ -493,28 +507,6 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     "tn" '(display-line-numbers-mode :which-key "line-numbers")
     "tz" 'writeroom-mode
     "tp" 'doom/toggle-profiler
-
-    ;; Window
-    "w" '(:ignore t :which-key "window")
-    "wl" 'evil-window-right
-    "wk" 'evil-window-up
-    "wj" 'evil-window-down
-    "wh" 'evil-window-left
-    "wo" 'delete-other-windows
-    "wm" 'delete-other-windows
-    "wv" 'evil-window-vsplit
-    "ws" 'evil-window-split
-    "wq" 'evil-quit
-    "wd" 'evil-quit
-    "ww" 'ace-window
-    )
-
-  ;; TODO: Mode Keybindings
-  (my-local-leader-def
-    :states '(normal visual)
-    :keymaps 'org-mode-map
-    "sn" 'org-narrow-to-subtree
-    "sN" 'widen
     )
   )
 (custom-set-variables
