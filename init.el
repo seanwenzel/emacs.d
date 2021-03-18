@@ -95,40 +95,47 @@
   (package-install 'use-package))
 
 (eval-and-compile
-  (setq use-package-always-ensure t)         ; Always assume the :ensure tag is set to t
+  ;; (setq use-package-always-ensure t)         ; Always assume the :ensure tag is set to t
   (setq use-package-expand-minimally t)      ; Make expanded code as minimal as possible
   (setq use-package-enable-imenu-support t)) ; Allow imenu to see use-package declarations
 
 (require 'use-package)
 
+(use-package diminish
+  :ensure t)
 
-
-(use-package diminish)
-
-(use-package vlf)
+(use-package vlf
+  :ensure t)
 
 (use-package doom-themes
+  :ensure t
   :demand
   :config
   (doom-themes-org-config)
   (load-theme 'doom-monokai-pro t))
 
-(use-package all-the-icons)
+(use-package all-the-icons
+  :ensure t
+  )
 (use-package doom-modeline
+  :ensure t
   :after all-the-icons
   :config
   (doom-modeline-mode))
 
 (use-package editorconfig
+  :ensure t
   :config
   (editorconfig-mode 1))
 
 (use-package smooth-scrolling
+  :ensure t
   :config
   (smooth-scrolling-mode 1)
   )
 
 (use-package leetcode
+  :ensure t
   :config
   (setq leetcode-prefer-language "python3")
   (setq leetcode-save-solutions t)
@@ -137,6 +144,7 @@
 
 ;; load evil
 (use-package evil
+  :ensure t
   ;; install the evil package if not installed
   :init ;; tweak evil's configuration before loading it
   ;; (setq evil-search-module 'evil-search)
@@ -169,22 +177,26 @@
   (evil-mode))
 
 (use-package evil-collection
+  :ensure t
   :after evil
   :config
   (evil-collection-init))
 
 ;; gc operator, like vim-commentary
 (use-package evil-commentary
+  :ensure t
   :after evil
   :config
   (evil-commentary-mode))
 
 ;; like vim-surround
 (use-package evil-surround
+  :ensure t
   :config
   (global-evil-surround-mode 1))
 
 (use-package evil-snipe
+  :ensure t
   :config
   (setq evil-snipe-scope 'buffer)
   (evil-snipe-mode +1)
@@ -196,6 +208,7 @@
 
 ;; more text objectss
 (use-package evil-args
+  :ensure t
   :after evil
   :init
   (progn
@@ -204,29 +217,39 @@
     (define-key evil-outer-text-objects-map "a" 'evil-outer-arg)))
 
 (use-package rainbow-delimiters
+  :ensure t
   :config
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
   )
 
 (use-package yasnippet
+  :ensure t
   :defer 1
   :config (yas-global-mode))
 
 (use-package yasnippet-snippets
+  :ensure t
   :after yasnippet
   :config (yasnippet-snippets-initialize))
 
-(use-package ivy-yasnippet)
+(use-package ivy-yasnippet
+  :ensure t
+  )
 
 (use-package flycheck
+  :ensure t
   :diminish flycheck-mode
   ;; :config
   ;; (add-hook 'after-init-hook #'global-flycheck-mode)
   )
 
-(use-package restart-emacs)
+(use-package restart-emacs
+
+  :ensure t
+  )
 
 (use-package exec-path-from-shell
+  :ensure t
   :config
   (when (memq window-system '(mac ns x))
     (exec-path-from-shell-initialize)
@@ -238,12 +261,14 @@
 ;;   (add-hook 'js2-jsx-mode #'add-node-modules-path))
 
 (use-package projectile
+  :ensure t
   :config
   (projectile-mode +1)
   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 (use-package company
+  :ensure t
   :diminish company-mode
   :config
   (define-key company-active-map (kbd "M-n") nil)
@@ -261,9 +286,11 @@
   (add-hook 'after-init-hook #'global-company-mode))
 
 (use-package avy
+  :ensure t
   :commands (avy-goto-word-1))
 
 (use-package ivy
+  :ensure t
   :diminish
   :init
   (use-package counsel :diminish :config (counsel-mode 1))
@@ -286,23 +313,28 @@
     (ivy--cd "~/")))
 
 (use-package magit
+  :ensure t
   :bind ("C-x g" . magit-status))
 
 ;; Forge install fails for some reason
 (use-package forge
+  :ensure t
   :after magit)
 
 (use-package diff-hl
+  :ensure t
   :config
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
   (global-diff-hl-mode))
 
 (use-package which-key
+  :ensure t
   :diminish which-key-mode
   :config
   (which-key-mode))
 
 (use-package writeroom-mode
+  :ensure t
   :config
   (setq writeroom-width 100)
   )
@@ -327,6 +359,7 @@
     "i" 'elisp-index-search))
 
 (use-package robot-mode
+  :ensure t
   :config
   (add-to-list 'auto-mode-alist '("\\.robot\\'" . robot-mode)))
 
@@ -337,13 +370,17 @@
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 
-(use-package json-mode)
+(use-package json-mode
+  :ensure t
+  )
 
 (use-package python-black
+  :ensure t
   :after python
   )
 
 (use-package py-yapf
+  :ensure t
   :after python)
 
 (use-package docker
@@ -351,11 +388,14 @@
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
+  :ensure t
   :config
   (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
   )
 
-(use-package cmake-mode)
+(use-package cmake-mode
+  :ensure t
+  )
 
 (defun edit-config-file ()
   "Open the init file."
@@ -386,6 +426,7 @@
   (setq doom--profiler (not doom--profiler)))
 
 (use-package general
+  :ensure t
   :config
   (general-evil-setup)
 
