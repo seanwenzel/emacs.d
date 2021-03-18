@@ -465,7 +465,7 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     :keymaps 'override
     :states  '(insert emacs normal hybrid motion visual operator)
     :prefix  "SPC"
-    :non-normal-prefix "S-SPC")
+    :non-normal-prefix "M-m")
 
   ;; For per-major mode bindings
   (general-create-definer global-leader
