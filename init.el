@@ -341,12 +341,6 @@
 (use-package format-all
   :ensure t)
 
-;; Use format-all-mode instead
-;; (use-package prettier-js
-;;   :ensure t
-;;   :config
-;;   (add-hook 'js-mode-hook 'prettier-js-mode))
-
 (use-package lua-mode
   :ensure t)
 
@@ -384,15 +378,6 @@
 (use-package json-mode
   :ensure t
   )
-
-(use-package python-black
-  :ensure t
-  :after python
-  )
-
-(use-package py-yapf
-  :ensure t
-  :after python)
 
 (use-package docker
   :ensure t
