@@ -146,14 +146,14 @@
   ;; (setq evil-shift-round nil)
   (setq evil-want-C-u-scroll t)
   ;; (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
-  ;; (setq evil-want-keybinding nil)
+  (setq evil-want-keybinding nil)
   :config ;; tweak evil after loading it
 
-  (setq evil-default-state 'insert)
+  (setq evil-default-state 'normal)
 
-  (evil-set-initial-state 'prog-mode 'normal)
-  (evil-set-initial-state 'text-mode 'normal)
-  (evil-set-initial-state 'fundamental-mode 'normal)
+  ;; (evil-set-initial-state 'prog-mode 'normal)
+  ;; (evil-set-initial-state 'text-mode 'normal)
+  ;; (evil-set-initial-state 'fundamental-mode 'normal)
 
   (add-hook 'with-editor-mode-hook 'evil-insert-state) ;; Magit git commit buffer
 
@@ -167,10 +167,10 @@
 
   (evil-mode))
 
-;; (use-package evil-collection
-;;   :after evil
-;;   :config
-;;   (evil-collection-init))
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
 
 ;; gc operator, like vim-commentary
 (use-package evil-commentary
@@ -375,6 +375,7 @@
 
   (defconst my-leader "SPC")
   (defconst my-local-leader ",")
+
   (general-create-definer my-leader-def
     :prefix my-leader)
 
