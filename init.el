@@ -315,6 +315,16 @@
   :ensure t
   :bind ("C-x g" . magit-status))
 
+;; (use-package git-commit
+;;   :ensure nil
+;;   :config
+;;   ;; Enforce git commit conventions.
+;;   ;; See https://chris.beams.io/posts/git-commit/
+;;   (setq git-commit-summary-max-length 50
+;;         git-commit-style-convention-checks '(overlong-summary-line non-empty-second-line))
+;;   (add-hook 'with-editor-mode-hook fill-column 72)
+;;   )
+
 ;; Forge install fails for some reason
 (use-package forge
   :ensure t
