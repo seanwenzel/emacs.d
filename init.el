@@ -418,6 +418,15 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
                          "s" '((lambda () (interactive) (switch-to-buffer "*scratch*"))
                                :which-key "scratch-buffer"))
 
+  (+general-global-menu! "files" "f"
+    "ed" 'edit-config-file
+    "er" 'reload-emacs-configuration
+    "f" 'counsel-find-file
+    "g" 'counsel-git
+    "s" 'save-buffer
+    "r" 'counsel-recentf
+    )
+
   (+general-global-menu! "window" "w"
     "l" 'evil-window-right
     "k" 'evil-window-up
@@ -446,15 +455,6 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
     ;; Errors
     "e" '(:ignore t :which-key "errors")
     "el" 'flycheck-list-errors
-
-    ;; Files
-    "f" '(:ignore t :which-key "files")
-    "fed" 'edit-config-file
-    "fer" 'reload-emacs-configuration
-    "ff" 'counsel-find-file
-    "fg" 'counsel-git
-    "fs" 'save-buffer
-    "fr" 'counsel-recentf
 
     ;; Git
     "g" '(:ignore t :which-key "git")
