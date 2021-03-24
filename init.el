@@ -30,7 +30,7 @@
  line-spacing nil                       ; I sometimes like some line spacing
  ring-bell-function 'ignore             ; silent bell when you make a mistake
  sentence-end-double-space nil          ; End a sentence after a dot and a space
- show-trailing-whitespace t             ; Display trailing whitespaces
+ show-trailing-whitespace nil           ; Display trailing whitespaces
  tab-width 4                            ; Set width for tabs
  x-stretch-cursor t                     ; Stretch cursor to the width of the underlying glyph
 
@@ -409,6 +409,9 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.robot\\'" . robot-mode)))
 
+(use-package emmet-mode
+  :ensure t)
+
 (use-package groovy-mode
   :ensure t)
 
@@ -632,7 +635,7 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(company-lsp lsp-ivy lsp-ui lsp-mode vterm jenkinsfile-mode groovy-mode ripgrep format-all prettier-js lua-mode cmake-mode dockerfile-mode dockerfile py-yapf python-black evil-snipe vlf docker projectile orderless forge json-mode markdown-mode js2-refactor rainbow-delimiters objed smooth-scrolling yasnippet-snippets writeroom-mode which-key use-package robot-mode restart-emacs magit leetcode ivy-yasnippet general flycheck exec-path-from-shell evil-surround evil-commentary evil-collection evil-args editorconfig doom-themes doom-modeline diminish diff-hl counsel company avy add-node-modules-path)))
+   '(emmet-mode company-lsp lsp-ivy lsp-ui lsp-mode vterm jenkinsfile-mode groovy-mode ripgrep format-all prettier-js lua-mode cmake-mode dockerfile-mode dockerfile py-yapf python-black evil-snipe vlf docker projectile orderless forge json-mode markdown-mode js2-refactor rainbow-delimiters objed smooth-scrolling yasnippet-snippets writeroom-mode which-key use-package robot-mode restart-emacs magit leetcode ivy-yasnippet general flycheck exec-path-from-shell evil-surround evil-commentary evil-collection evil-args editorconfig doom-themes doom-modeline diminish diff-hl counsel company avy add-node-modules-path)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
