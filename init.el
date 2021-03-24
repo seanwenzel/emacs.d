@@ -1,3 +1,5 @@
+(setq gc-cons-threshold 100000000)
+
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -81,13 +83,14 @@
   (ansi-color-apply-on-region (point-min) (point-max)))
 (add-to-list 'auto-mode-alist '("\\.log\\'" . display-ansi-colors))
 
+;; (setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
 (require 'package)
 ;; (setq package-enable-at-startup nil)
-(setq package-archives '(("org"   . "http://orgmode.org/elpa/")
-                         ("gnu"   . "http://elpa.gnu.org/packages/")
-                         ("melpa" . "http://melpa.org/packages/")
-                         ("melpa-stable" . "https://stable.melpa.org/packages/"))
-      )
+(setq package-archives '(("org"   . "https://orgmode.org/elpa/")
+                         ("gnu"   . "https://elpa.gnu.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")))
+                         ;; ("melpa-stable" . "https://stable.melpa.org/packages/")))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
