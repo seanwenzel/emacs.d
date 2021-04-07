@@ -426,7 +426,8 @@
 (use-package emmet-mode
   :ensure t
   :config
-  (add-hook 'web-mode-hook #'emmet-mode))
+  (add-hook 'web-mode-hook #'emmet-mode)
+  (add-hook 'web-mode-hook #'css-mode))
 
 (use-package groovy-mode
   :ensure t)
