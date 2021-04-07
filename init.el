@@ -89,8 +89,8 @@
 ;; (setq package-enable-at-startup nil)
 (setq package-archives '(("org"   . "https://orgmode.org/elpa/")
                          ("gnu"   . "https://elpa.gnu.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")))
-                         ;; ("melpa-stable" . "https://stable.melpa.org/packages/")))
+                         ("melpa" . "https://melpa.org/packages/")
+                         ("melpa-stable" . "https://stable.melpa.org/packages/")))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -263,6 +263,7 @@
     ))
 
 (use-package add-node-modules-path
+  :ensure t
   :config
   (add-hook 'js-mode-hook #'add-node-modules-path))
 
@@ -331,9 +332,9 @@
   :ensure t
   :diminish
   :init
-  (use-package counsel :diminish :config (counsel-mode 1))
-  (use-package swiper :defer t)
-  (use-package orderless)
+  (use-package counsel :ensure t :diminish :config (counsel-mode 1))
+  (use-package swiper :ensure t :defer t)
+  (use-package orderless :ensure t)
   (ivy-mode 1)
   :custom
   (ivy-use-virtual-buffers t)
