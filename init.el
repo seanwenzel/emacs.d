@@ -184,11 +184,11 @@
 
   (evil-mode))
 
-(use-package evil-collection
-  :ensure t
-  :after evil
-  :config
-  (evil-collection-init))
+;; (use-package evil-collection
+;;   :ensure t
+;;   :after evil
+;;   :config
+;;   (evil-collection-init))
 
 ;; gc operator, like vim-commentary
 (use-package evil-commentary
