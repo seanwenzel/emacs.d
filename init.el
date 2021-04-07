@@ -418,8 +418,15 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.robot\\'" . robot-mode)))
 
+(use-package web-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode)))
+
 (use-package emmet-mode
-  :ensure t)
+  :ensure t
+  :config
+  (add-hook 'web-mode-hook #'emmet-mode))
 
 (use-package groovy-mode
   :ensure t)
@@ -506,6 +513,14 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
   ;; swap ; and :
   (general-swap-key nil 'motion
     ";" ":")
+
+  ;; allow emacs navigation keybindings in visual mode
+  (general-define-key
+   :states '(motion)
+   "C-e" 'move-end-of-line
+   "C-n" 'next-line
+   "C-p" 'previous-line)
+
 
   ;; (defconst my-leader "SPC")
   ;; (defconst my-local-leader ",")
@@ -644,7 +659,7 @@ Create prefix map: +general-global-NAME. Prefix bindings in BODY with INFIX-KEY.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(rmsbolt dtrt-indent emmet-mode company-lsp lsp-ivy lsp-ui lsp-mode vterm jenkinsfile-mode groovy-mode ripgrep format-all prettier-js lua-mode cmake-mode dockerfile-mode dockerfile py-yapf python-black evil-snipe vlf docker projectile orderless forge json-mode markdown-mode js2-refactor rainbow-delimiters objed smooth-scrolling yasnippet-snippets writeroom-mode which-key use-package robot-mode restart-emacs magit leetcode ivy-yasnippet general flycheck exec-path-from-shell evil-surround evil-commentary evil-collection evil-args editorconfig doom-themes doom-modeline diminish diff-hl counsel company avy add-node-modules-path)))
+   '(web-mode rmsbolt dtrt-indent emmet-mode company-lsp lsp-ivy lsp-ui lsp-mode vterm jenkinsfile-mode groovy-mode ripgrep format-all prettier-js lua-mode cmake-mode dockerfile-mode dockerfile py-yapf python-black evil-snipe vlf docker projectile orderless forge json-mode markdown-mode js2-refactor rainbow-delimiters objed smooth-scrolling yasnippet-snippets writeroom-mode which-key use-package robot-mode restart-emacs magit leetcode ivy-yasnippet general flycheck exec-path-from-shell evil-surround evil-commentary evil-collection evil-args editorconfig doom-themes doom-modeline diminish diff-hl counsel company avy add-node-modules-path)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
